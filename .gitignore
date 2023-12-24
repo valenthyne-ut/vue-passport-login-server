@@ -11,3 +11,10 @@
 
 #!.yarn/cache
 .pnp.*
+
+### User defined
+### Files
+
+### Folders
+node_modules
+dist

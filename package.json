@@ -1,4 +1,4 @@
 {
-  "name": "server",
+  "name": "vue-passport-login-server",
   "packageManager": "yarn@4.0.2"
 }
