@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import { sequelize } from "./classes/db";
 
+import "@/strategies/localStrategy";
+
 export const app = express();
 
 (async () => {
