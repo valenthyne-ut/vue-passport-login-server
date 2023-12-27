@@ -1,11 +1,17 @@
 import express from "express";
 import cors from "cors";
+import { sequelize } from "./classes/db";
 
-const app = express();
-app.use(cors({
-	origin: "http://localhost:8080"
-}));
+(async () => {
+	const app = express();
 
-app.listen(8080, () => {
-	console.log("Listening at port 8080");
-});
+	app.use(cors({
+		origin: "http://localhost:8080"
+	}));
+	
+	await sequelize.sync();
+	
+	app.listen(8080, () => {
+		console.log("Listening at port 8080");
+	});
+})();
