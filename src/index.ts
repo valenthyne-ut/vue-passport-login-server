@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import { sequelize } from "./classes/db";
 
-(async () => {
-	const app = express();
+export const app = express();
 
+(async () => {
 	app.use(cors({
 		origin: "http://localhost:8080"
 	}));
