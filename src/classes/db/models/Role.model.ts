@@ -1,5 +1,5 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes } from "sequelize";
-import { sequelize } from "..";
+import { sequelize } from "@/classes/db";
 
 export class Role extends Model<InferAttributes<Role>, InferCreationAttributes<Role, {omit: never}>> {
 	declare public readonly id: number | null;
