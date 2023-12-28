@@ -1,5 +1,8 @@
-import { app } from "@/index";
+import { Router } from "express";
 
-app.post("/api/account", (request, response) => {
-	response.status(501).send("Not implemented");
-});
+const accountRouter = Router()
+	.post("/", (request, response) => {
+		response.status(501).send("Not implemented.");
+	});
+
+export { accountRouter };
