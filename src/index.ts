@@ -1,9 +1,9 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-
 import { sequelize } from "@/classes/db";
-
 import { apiRouter } from "@/api";
+
 import "@/strategies/localStrategy";
 
 const app = express();

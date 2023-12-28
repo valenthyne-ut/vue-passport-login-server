@@ -10,7 +10,7 @@ const accountRouter = Router()
 
 		User.create({
 			name: randomUsername,
-			password_hash: hashSync(randomPassword, 11)
+			password_hash: hashSync(randomPassword, parseInt(process.env.BCRYPT_HASH_COST))
 		}).then(() => {
 			return response.status(201).json({
 				username: randomUsername,

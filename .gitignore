@@ -15,6 +15,7 @@
 ### User defined
 ### Files
 vue-passport-login-server.db
+.env
 
 ### Folders
 node_modules
