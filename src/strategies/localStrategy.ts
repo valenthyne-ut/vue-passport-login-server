@@ -1,5 +1,4 @@
-import { Role } from "@/classes/db/models/Role.model";
-import { User } from "@/classes/db/models/User.model";
+import { User, Role } from "@/classes/db/models";
 import { compareSync } from "bcrypt";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
