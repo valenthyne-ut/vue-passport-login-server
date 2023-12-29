@@ -1,6 +1,6 @@
 import express from "express";
-import { accountRouter } from "@/api/Account.api";
-import { authRouter } from "@/api/Auth.api";
+import { accountRouter } from "@/api/Account";
+import { authRouter } from "@/api/Auth";
 
 const apiRouter = express.Router()
 	.use("/account", accountRouter)
