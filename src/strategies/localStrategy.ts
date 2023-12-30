@@ -1,4 +1,4 @@
-import { User, Role } from "@/classes/db/models";
+import { User } from "@/classes/db/models";
 import { compareSync } from "bcrypt";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
@@ -11,9 +11,7 @@ passport.use("password", new LocalStrategy({
 		where: {
 			name: username
 		},
-		include: [
-			Role
-		]
+		include: [{association: User.associations.roles}]
 	});
 
 	if(!user) {

@@ -6,10 +6,13 @@ import { apiRouter } from "@/api";
 
 import "@/strategies/localStrategy";
 import { initModels } from "./classes/db/models";
+import { randomBytes } from "crypto";
 
 const app = express();
 
 (async () => {
+	process.env.JWT_SECRET = randomBytes(48).toString("hex");
+
 	initModels(sequelize);
 	app.use(cors({
 		origin: "http://localhost:8080"
