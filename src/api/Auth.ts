@@ -13,16 +13,24 @@ const authRouter = Router()
 				});
 			}
 
-			request.login(user, { session: false }, (error) => {
+			request.login(user, { session: false }, async (error) => {
 				if(error) {
 					console.log(error);
 					return response.status(400).send({
 						error: "Server error"
 					});
 				}
-				const jwtToken = sign({test: "test"}, process.env.JWT_SECRET);
+				
+				user = user as User;
+				const payload = {
+					name: user.name,
+					roles: (await user.getRoles()).map(role => role.name)
+				};
+
+				const jwtToken = sign({user: payload}, process.env.JWT_SECRET);
 				return response.status(200).json({
-					jwtToken: jwtToken
+					jwtToken: jwtToken,
+					user: payload
 				});
 			});
 		})(request, response);
