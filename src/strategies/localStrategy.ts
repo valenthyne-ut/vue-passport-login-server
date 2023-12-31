@@ -8,10 +8,8 @@ passport.use("password", new LocalStrategy({
 	passwordField: "password"
 }, async (username, password, done) => {
 	const user = await User.findOne({
-		where: {
-			name: username
-		},
-		include: [{association: User.associations.roles}]
+		where: { name: username },
+		include: [{ association: User.associations.roles }]
 	});
 
 	if(!user) {
