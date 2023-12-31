@@ -14,7 +14,9 @@ interface AccountRequestParams {
 const accountRouter = Router()
 	.post("/", async (request: Request<ParamsDictionary, unknown, AccountRequestParams>, response) => {
 		if(!request.body.role || !["user", "admin"].includes(request.body.role)) {
-			return response.status(400).send("Invalid role.");
+			return response.status(400).json({
+				error: "Invalid role."
+			});
 		}
 
 		const randomUsername = randomBytes(4).toString("hex");
@@ -43,7 +45,9 @@ const accountRouter = Router()
 			});
 		} catch(err) {
 			console.log(err);
-			return response.status(500).send("Couldn't create new user.");
+			return response.status(500).json({
+				error: "Couldn't create new user."
+			});
 		}
 		
 	});
