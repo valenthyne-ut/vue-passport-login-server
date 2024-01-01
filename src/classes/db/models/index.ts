@@ -1,10 +1,11 @@
 import { Sequelize } from "sequelize";
 import { User } from "./User";
 import { Role } from "./Role";
+import { ExpiredJWT } from "./ExpiredJWT";
 
-export { User, Role };
+export { User, Role, ExpiredJWT };
 
-export function initModels(sequelize: Sequelize)  {
+export const initModels = (sequelize: Sequelize) => {
 	User.initModel(sequelize);
 	Role.initModel(sequelize);
 
@@ -14,4 +15,9 @@ export function initModels(sequelize: Sequelize)  {
 	});
 
 	return { User, Role };
-}
+};
+
+export const initExpiredJWTCache = (sequelize: Sequelize) => {
+	ExpiredJWT.initModel(sequelize);
+	return { ExpiredJWT };
+};

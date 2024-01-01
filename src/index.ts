@@ -1,10 +1,10 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { sequelize, supplyDefaultsToDB } from "@/classes/db";
+import { expiredJWTCache, sequelize, supplyDefaultsToDB } from "@/classes/db";
 import { apiRouter } from "@/api";
 import { randomBytes } from "crypto";
-import { initModels } from "./classes/db/models";
+import { initExpiredJWTCache, initModels } from "./classes/db/models";
 
 process.env.JWT_SECRET = randomBytes(48).toString("hex");
 
@@ -15,6 +15,7 @@ const app = express();
 
 (async () => {
 	initModels(sequelize);
+	initExpiredJWTCache(expiredJWTCache);
 	app.use(cors({
 		origin: "http://localhost:8080"
 	}));

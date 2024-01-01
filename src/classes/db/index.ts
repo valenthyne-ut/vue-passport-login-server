@@ -10,6 +10,11 @@ export const sequelize = new Sequelize({
 	}
 });
 
+export const expiredJWTCache = new Sequelize({
+	dialect: "sqlite",
+	storage: ":memory:"
+});
+
 export const supplyDefaultsToDB = async () => {
 	const userRoleExists = (await Role.findOne({where: { name: "user" }})) != null;
 	if(!userRoleExists) {
