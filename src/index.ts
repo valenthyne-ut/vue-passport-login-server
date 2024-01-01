@@ -25,6 +25,7 @@ const app = express();
 	app.use("/api", apiRouter);
 
 	await sequelize.sync();
+	await expiredJWTCache.sync();
 	await supplyDefaultsToDB();
 	
 	app.listen(8080, () => {

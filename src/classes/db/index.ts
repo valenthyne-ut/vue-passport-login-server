@@ -12,7 +12,11 @@ export const sequelize = new Sequelize({
 
 export const expiredJWTCache = new Sequelize({
 	dialect: "sqlite",
-	storage: ":memory:"
+	storage: ":memory:",
+	logging: false,
+	define: {
+		underscored: true
+	}
 });
 
 export const supplyDefaultsToDB = async () => {
