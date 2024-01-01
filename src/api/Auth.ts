@@ -1,4 +1,4 @@
-import { User } from "@/classes/db/models";
+import { ExpiredJWT, User } from "@/classes/db/models";
 import { JWTPayload } from "@/interfaces/JWTPayload";
 import { Router } from "express";
 import { sign } from "jsonwebtoken";
@@ -37,6 +37,28 @@ const authRouter = Router()
 				});
 			});
 		})(request, response);
+	})
+	.post("/logout", async (request, response) => {
+		const authHeader = request.headers.authorization;
+
+		if(authHeader && authHeader.startsWith("Bearer ")) {
+			const token = authHeader.substring(7, authHeader.length);
+			const inCache = (await ExpiredJWT.findOne({ where: { token: token } })) != null;
+			if(!inCache) {
+				await ExpiredJWT.create({
+					token: token
+				});
+				return response.status(200).send();
+			} else {
+				return response.status(400).send({
+					error: "Already logged out."
+				});
+			}
+		} else {
+			return response.status(400).send({
+				error: "Not authenticated."
+			});
+		}
 	})
 	.get("/", passport.authenticate("jwt", { session: false }), async (request, response) => {
 		const user = request.user as User;
