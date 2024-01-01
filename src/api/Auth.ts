@@ -1,5 +1,6 @@
 import { ExpiredJWT, User } from "@/classes/db/models";
 import { JWTPayload } from "@/interfaces/JWTPayload";
+import { jwtCacheValidator } from "@/middleware";
 import { Router } from "express";
 import { sign } from "jsonwebtoken";
 import passport from "passport";
@@ -60,7 +61,7 @@ const authRouter = Router()
 			});
 		}
 	})
-	.get("/", passport.authenticate("jwt", { session: false }), async (request, response) => {
+	.get("/", jwtCacheValidator, passport.authenticate("jwt", { session: false }), async (request, response) => {
 		const user = request.user as User;
 		return response.status(200).json({
 			user: {
