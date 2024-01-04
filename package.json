@@ -2,8 +2,7 @@
   "name": "vue-passport-login-server",
   "packageManager": "yarn@4.0.2",
   "scripts": {
-    "build": "rm -rf ./dist && tsc --build tsconfig.json",
-    "replacepaths": "tsconfig-replace-paths tsconfig.json",
+    "build": "rm -rf ./dist && tsc --build tsconfig.json && tsconfig-replace-paths tsconfig.json",
     "start": "node ./dist/index.js"
   },
   "dependencies": {

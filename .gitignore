@@ -20,3 +20,5 @@ vue-passport-login-server.db
 ### Folders
 node_modules
 dist
+certs/*
+!certs/README.md
